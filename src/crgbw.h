@@ -6,11 +6,7 @@
  * Modified by David Madison (http://partsnotincluded.com).
  * 
 */
-.pio
-.vscode/.browse.c_cpp.db*
-.vscode/c_cpp_properties.json
-.vscode/launch.json
-.vscode/ipch
+
 #ifndef FastLED_RGBW_h
 #define FastLED_RGBW_h
 
