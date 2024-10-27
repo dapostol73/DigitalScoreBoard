@@ -8,25 +8,31 @@
 #include <FastLED.h>
 #include "CRGBW.h"
 
-#define LEDS_STRIP_PIN1 2
-#define LEDS_STRIP_PIN2 3
-#define LEDS_STRIP_PIN3 4
-#define LEDS_STRIP_PIN4 5
-#define LEDS_PER_STRIP 21
+#define LEDS_STRIP_PINH0 2
+#define LEDS_STRIP_PINH1 3
+#define LEDS_STRIP_PINA0 4
+#define LEDS_STRIP_PINA1 5
+#define LEDS_SEGMENTS 7
+#define LEDS_PER_SEGMENT 3
+#define LEDS_PER_STRIP (LEDS_SEGMENTS * LEDS_PER_SEGMENT)
 
 class DisplayControl
 {
 	private:
-        CRGBW leds1[LEDS_PER_STRIP];
-        CRGB *leds1RGB = (CRGB *) &leds1[0];
-        CRGBW leds2[LEDS_PER_STRIP];
-        CRGB *leds2RGB = (CRGB *) &leds2[0];
-        CRGBW leds3[LEDS_PER_STRIP];
-        CRGB *leds3RGB = (CRGB *) &leds3[0];
-        CRGBW leds4[LEDS_PER_STRIP];
-        CRGB *leds4RGB = (CRGB *) &leds4[0];
+        CRGBW ledsHomeDigit0[LEDS_PER_STRIP];
+        CRGB *ledsHomeDigit0RGB = (CRGB *) &ledsHomeDigit0[0];
+        CRGBW ledsHomeDigit1[LEDS_PER_STRIP];
+        CRGB *ledsHomeDigit1RGB = (CRGB *) &ledsHomeDigit1[0];
+        CRGBW ledsAwayDigit0[LEDS_PER_STRIP];
+        CRGB *ledsAwayDigit0RGB = (CRGB *) &ledsAwayDigit0[0];
+        CRGBW ledsAwayDigit1[LEDS_PER_STRIP];
+        CRGB *ledsAwayDigit1RGB = (CRGB *) &ledsAwayDigit1[0];
 
-        int clamp(int value, int max, int min);
+        CRGB colorHome = CRGB(255, 0, 0);
+        CRGB colorAway = CRGB(255, 0, 0);
+        CRGB colorOff = CRGB(0, 0, 0);
+
+        int clamp(int value, int minimum, int maximum);
         void displayDigit(CRGBW ledStrip[], CRGB color, int digit);
     
     protected:
@@ -34,6 +40,7 @@ class DisplayControl
     public:
         DisplayControl();
 		void init();
+        void displayTeamScore(int score, bool home = true);
 };
 
 #endif
