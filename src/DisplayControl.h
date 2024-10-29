@@ -39,7 +39,7 @@ class DisplayControl
     
     public:
         DisplayControl();
-		void init();
+        void init();
         void displayTeamScore(int score, bool home = true);
 };
 
